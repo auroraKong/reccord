@@ -1,3 +1,102 @@
+
+## 2017-02-24
+
+* 问下面代码输出什么
+```
+for(var i = 0; i < 5; i++){
+	setTimeout(()=>{
+		console.log(i);
+	}, 0);
+}//5 5 5 5 5
+```
+解释为什么会出现上面这种情况，我回答了执行栈
+
+然后下面这段代码输出什么
+
+```
+for(let i = 0; i < 5; i++){
+	setTimeout(()=>{
+		console.log("three:", i);
+	}, 0);
+}//0 1 2 3 4
+```
+
+* 给下面这样一个树结构，输出树结点
+```
+{
+  left: { ... },
+  right: { ... },
+  value: 1
+}
+```
+
+我的代码
+```
+function logTree(node){
+  if(node == null) return;
+  logTree(node.left);
+  console.log(node.value);
+  logTree(node.right);
+}
+```
+然后说这是左－根－右，中序遍历
+
+给下面这颗树，用上面代码输出的结果是什么
+```
+var tree = {
+  left: {
+    left: { value: 3 },
+    right: { value: 4 },
+    value: 1
+  },
+  right: {
+    left: { value: 5 },
+    right: { value: 6 },
+    value: 2
+  },
+  value: 0
+}
+```
+画了下树结构，输出3 1 4 0 5 2 6
+
+* 介绍vue和vuex：
+
+	[vue](http://www.csdn.net/article/1970-01-01/2825439)：组件化开发，[虚拟dom](http://www.cnblogs.com/lvyongbo/p/5931636.html)、数据双向绑定
+
+	[vuex](http://vuex.vuejs.org/zh-cn/intro.html): 集中存储所有组件共享的状态。当有多个组件共享状态时，把共享状态抽取出来集中管理。
+
+* webpack和其它打包工具比好在哪儿？
+
+	webpack是一个模块化加载器兼打包工具，同时支持AMD和CMD加载规范。优势是：
+
+1. 代码分割
+
+	webpack支持两种依赖加载：同步和异步。同步的依赖会在编译时直接打包输出到目的文件中；异步的依赖会单独生成一个代码块，只有在浏览器中运行需要的时候才会异步加载该代码块。
+
+2. Loaders
+
+	在默认情况下，webpack只能处理JS文件，但是通过加载器我们可以将其他类型的资源转换为JS输出。
+
+3. 插件机制
+
+	webpack提供了强大的插件系统，当webpack内置的功能不能满足我们的构建需求时，我们可以通过使用插件来提高工作效率。
+
+* 介绍mongodb
+
+1. MongoDB的提供了一个面向文档存储，操作起来比较简单和容易。
+2. 你可以在MongoDB记录中设置任何属性的索引 (如：FirstName="Sameer",Address="8 Gandhi Road")来实现更快的排序。
+3. 你可以通过本地或者网络创建数据镜像，这使得MongoDB有更强的扩展性。
+4. 如果负载的增加（需要更多的存储空间和更强的处理能力） ，它可以分布在计算机网络中的其他节点上这就是所谓的分片。
+5. Mongo支持丰富的查询表达式。查询指令使用JSON形式的标记，可轻易查询文档中内嵌的对象及数组。
+6. MongoDb 使用update()命令可以实现替换完成的文档（数据）或者一些指定的数据字段 。
+7. Mongodb中的Map/reduce主要是用来对数据进行批量处理和聚合操作。
+8. Map和Reduce。Map函数调用emit(key,value)遍历集合中所有的记录，将key与value传给Reduce函数进行处理。
+9. Map函数和Reduce函数是使用Javascript编写的，并可以通过db.runCommand或mapreduce命令来执行MapReduce操作。
+10. GridFS是MongoDB中的一个内置功能，可以用于存放大量小文件。
+11. MongoDB允许在服务端执行脚本，可以用Javascript编写某个函数，直接在服务端执行，也可以把函数的定义存储在服务端，下次直接调用即可。
+12. MongoDB支持各种编程语言:RUBY，PYTHON，JAVA，C++，PHP，C#等多种语言。
+13. MongoDB安装简单。
+
 ## 2017-02-14
 
 * CSS中相对定位与绝对定位的区别
