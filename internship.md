@@ -1,3 +1,30 @@
+## 2017-03-01
+
+* jquery获取父元素：parent获取直接父元素，parents获取祖先元素
+
+* jquery绑定事件：on、bind、live
+
+* jquery中empty和remove的区别：empty移除元素文本，remove移除dom结点
+
+* 原生js遇到的兼容问题：我说了绑定事件
+
+* 原生js移除一个结点：removeChild
+
+* 列举CSS hack：我说-webkit,-moz。下划线是哪个浏览器特有的？
+面试官说：CSS3新属性有些浏览器不支持就加浏览器私有属性。而CSShack解决兼容问题是：在IE下实现1像素高度，可以使用IE下特有的hack下划线‘_’,然后font-size:0。
+
+* CSS3实现动画几种方式：transition、animation，两者区别。
+
+* 做过HTML5移动端页面吗？@media媒体查询，rem是css单位，百分比，弹性盒子。
+
+* 前端的构建工具：webpack，列举几个loader，json-loader,css-loader
+
+* 列举node的系统模块：http，fs(I/O操作)，system(管理与运行环境相关的属性)
+
+* mysql和mongoDB的区别。数据库怎么选择。
+
+* 介绍你写的爬虫系统。批量爬取被封ip怎么解决？
+
 
 ## 2017-02-24
 
