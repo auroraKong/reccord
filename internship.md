@@ -1,3 +1,88 @@
+## 2017-03-21 携程Offer
+
+## 2017-03-21 携程二面
+
+* 垂直居中
+```
+单行内容垂直居中line-height | height
+多行内容垂直居中：
+1. display:table-cell; vertical-align: middle;
+2. position:relative; top:50%;
+3. display:flex; align-items:center;
+```
+
+* CSS3新特性
+```
+边框：border-radius | box-shadow
+背景：background-size | background-origin
+文本效果：text-shadow ｜ word-wrap
+字体：@font-face
+变形：transform：缩放、平移、旋转、拉伸
+过渡：transition：将效果添加到css属性上
+动画：animation：@keyframes
+多列：column-count ｜ column-gap ｜ column-rule
+用户界面：resize | box-sizing
+```
+
+* 用代码画图有什么方法：canvas、svg、css
+
+* 5个以上不同类型的HTML5标签。说一下H5的新特性。
+
+* localStorage和sessionStorage的区别，localStorage的存储上限。
+
+* ES6的新特性
+```
+let和const
+模版字符串
+箭头函数
+新类型Symbol
+set和map数据结构
+promise
+Iterator
+Generator
+async
+class
+module：import、export
+```
+
+* 动画的实现方法。css3的animation、js的setInterval和requestAnimationFrame
+
+* Vue实现数据双向绑定。route是怎么实现的。我说window.location,面试官说这样页面会刷新，然后我说window.history，问有哪些方法，pushState、replaceState、go。
+
+* webpack特性，用过哪些loader，有什么好处。有用过热更新吗？知道命令是什么吗？怎么[热部署启动](http://www.luckybird.me/webpack-%E7%83%AD%E9%83%A8%E7%BD%B2.html)？
+```
+安装 webpack-dev-server
+启动 webpack-dev-server
+开启热部署模式
+启动热部署
+```
+
+* 还用过其它的框架吗？jquery，bootstap。有用过其它的库吗？zepto、backbone。有用过前端模版吗？ejs、jade
+
+* 对jquery的方法进行分类：
+```
+jquery选择器：$()
+jquery事件：$().click()
+jquery效果：fadeIn等
+jquery HTML：对元素的操作，比如设置css属性、添加元素等
+jquery遍历：获取祖先元素、父元素、后代元素、同胞元素、过滤元素
+jquery Ajax：$.get(),$.post(),$.load()
+```
+
+* 用node做过什么？
+
+* 用过socket吗？我说用过websocket。
+
+* 数组去重。
+
+* 说一些状态码：200,304,302,401,403,404,500,101
+
+* 做的项目有遇到什么困难。
+
+* 你现在在大连，你在上海会有问题吗？
+
+* 你有什么问题吗？
+
 ## 2017-03-20 美团
 
 * 介绍一下百度前端学院
