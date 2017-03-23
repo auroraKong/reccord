@@ -1,3 +1,154 @@
+## 2017-03-22 百度
+
+* 自我介绍
+* 说一下学习前端的过程
+* 弹出层组件是你自己实现的吗？说一下实现的思路。
+* 状态管理你是怎么做的？用localStorage和vuex有什么感受？存储本地可以手动删除吗？
+* 你还用过node，你是怎么用的？
+* 除了用框架，你有写过原生JS吗？
+* ES6熟悉吗？
+* 怎么理解标签语义化。说一下语义化标签。
+```
+表现与结构分离：没有css时，也能呈现很好的内容结构
+有利于SEO：搜索引擎爬虫爬取
+便于团队开发维护
+header、footer、section、article、nav、aside
+```
+* img的title属性和alt属性的区别
+* 如何在新页面打开链接。应该是`target＝"_blank"`
+* input设置成只读和最多20个字符。readonly属性，maxlength属性规定输入字段中的字符的最大长度。
+* 转义字符，空格`&nbsp;`,左尖括号`&lt;`,右肩括号`&gt;`
+* 禁止a标签跳转
+```
+<a href="javascript:void(0);" ></a>
+<a href="javascript:;" ></a>
+<a href="#" onclick="return false;"></a>
+```
+* 怎么理解盒模型，分两种知道是哪两种吗？有什么区别？
+* 有哪些css选择器以及优先级： 
+```
+优先级排序：
+ID选择器 id
+类选择器 class
+属性选择器 [type="radio"]
+伪类选择器 p:hover
+标签选择器 p
+伪元素选择器 p::before
+
+还有通用选择器 *
+子元素选择器 > 
+后代选择器 ' '
+兄弟选择器 ~
+相邻兄弟选择器 +
+
+!important 优先级最高
+css选择器越有针对性，选择范围越小，优先级越高
+```
+* 内联元素和块级元素的区别。内联元素可以设置宽高大小吗？inline-block有兼容性问题吗？我说元素间有缝隙，面试官说这个不是兼容性。从IE几开始支持inline-block.
+	[inline-block兼容及间隙问题](https://segmentfault.com/a/1190000004341343)
+* 那你说一下其它的感受深的兼容性
+```
+var EventUtil = {
+	addEvent: function(ele, eventName, listener){
+		if(ele.addEventListener){
+			ele.addEventListener(eventName, listener, false);		
+		}else if(ele.attachEvent){
+			ele.attachEvent("on" + eventName, listener);
+		}else{
+			ele["on" + eventName] = listener;
+		}
+	},
+	removeEvent: function(ele, eventName, listener){
+		if(ele.removeEventListener){
+			ele.removeEventListener(eventName, listener);		
+		}else if(ele.detachEvent){
+			ele.detachEvent("on" + eventName, listener);
+		}else{
+			ele["on" + eventName] = null;		
+		}
+	},
+	getEvent: function(e){
+		var evt = e || window.event;
+		return evt;
+	},
+	getTarget: function(e){
+		var e = this.getEvent(e);
+		var target = e.target || e.srcElement;
+		return target;
+	},
+	stopPropagation: function(e){
+		var e = this.getEvent(e);
+		if(e.stopPropagation) e.stopPropagation();
+		else e.cancelBubble = true;		
+	},
+	preventDefault: function(e){
+		var e = this.getEvent(e);
+		if(e.preventDefault) e.preventDefault();
+		else e.returnValue = false;//兼容firefox
+	}
+}
+```
+* 清除浮动
+```
+本质是触发父元素的bfc，让容器中的子元素不会影响到外面的元素
+1. 父元素使用伪元素
+.father:before, .father:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+2. 父元素后加空元素
+div.clearfix{
+	clear: both;
+	zoom: 1;//ie haslayout
+}
+```
+* 固定宽高的元素让它[水平垂直居中](https://www.w3cplus.com/css/vertically-center-content-with-css)。
+* absolute和fixed的区别
+* 如何声明变量
+```
+1. var,let,const
+2. 不使用关键字
+3. window.a = 1
+4. function
+```
+* 有哪些变量类型：Number、String、Null、Undefined、Object、Array、Boolean、Symbol
+* 怎么[判断变量类型](http://harttle.com/2015/09/18/js-type-checking.html)
+```
+typeof
+instanceof
+实例.constructor === 类型
+Object.prototype.toString.call(实例)
+```
+* 原生JS怎么实现继承
+* 介绍ajax。怎么实现的？XMLHttpRequest对象是谁提供的？我说window，然后问window对象是谁提供的，浏览器
+* 发一个ajax请求的步骤。代码有哪些方法。服务器响应怎么拿到数据？
+* JS的事件：click、keydown、keyup、keypress
+* 事件的传播分哪几个阶段？
+* 跨域是怎么发生的？怎么跨域
+* 在调用方法的时候怎么动态切换上下文？怎么指定this？call、apply区别。bind
+* 数组去重，有更简便的方法吗？
+* ES6提供了一种数据结构没有重复的数组这个知道吗？set也有迭代的接口。
+```
+const s = new Set();
+
+[2, 3, 5, 4, 5, 2, 2].forEach(x => s.add(x));
+
+for (let i of s) {
+  console.log(i);
+}
+// 2 3 5 4
+```
+* new操作符做了什么事情
+```
+1. 新建一个对象 f = new Object();
+2. 设置对象原型链 f.__proto__ = F.prototype;
+3. 改变构造函数内this的指向，让F中的this指向实例，F.call(f);
+```
+* 图片懒加载是怎么实现的？怎么判断什么时候应该切换src？你这个懒是怎么体现的？如果图片很多如何提高性能？
+* 你有什么问题问我吗？
+
+
 ## 2017-03-21 携程Offer
 
 ## 2017-03-21 携程二面
@@ -7,7 +158,7 @@
 单行内容垂直居中line-height | height
 多行内容垂直居中：
 1. display:table-cell; vertical-align: middle;
-2. position:relative; top:50%;
+2. position:absolute; top:50%;
 3. display:flex; align-items:center;
 ```
 
