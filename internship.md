@@ -1,3 +1,79 @@
+## 2017-03-24 滴滴另一个部门
+
+* 自我介绍
+
+* 调查问卷的平台是个什么项目？介绍一下。多人管理是什么？mongodb中数据是怎么存储的？为什么选择使用vue？怎么考虑的？[对比react其它框架](https://cn.vuejs.org/v2/guide/comparison.html)
+
+* [虚拟dom内部实现机制](https://github.com/livoras/blog/issues/13)？[diff算法](https://zhuanlan.zhihu.com/p/20346379?columnSlug=purerender)react是如何实现比其它框架更快？
+
+* 看了我的博客，说一下cookie和session的区别。cookie会带来安全问题，有什么防范措施？XSS、CSRF。怎么预防XSS，怎么防止外部伪造用户？
+
+* 还问你博客上的问题，解决跨域有哪几种手段？
+
+* JS的内存机制，垃圾怎么回收。
+
+* ES6中有什么新的特性。
+
+* 开发用什么工具？sublime，调试用什么工具？chrome devtool
+
+* 说一下webpack，用过哪些loader。如果要引用一个第三方的库，webpack打包需要注意什么？这个没查到相关资料。
+
+* 实习时间。
+
+* 解析url拿到查询参数的值`http://www.didichuxing.com/manage?a=1&b=2&c=3`
+```
+function parseUrl(url, key){
+	var str = url.split('?')[1];
+	var arr = str.split('&');
+	obj = {};
+	arr.forEach(function(item){
+		var tmp = item.split('=');
+		obj[tmp[0]] = tmp[1];
+	})
+	return obj[key];
+}
+```
+
+* 对哪些数据结构熟悉？那就做个树的题吧，把一棵树转成双向链表对树有什么要求？二叉搜索树转双向链表。
+```
+struct TreeNode{
+	int val;
+	TreeNode *left;
+	TreeNode *right;
+	TreeNode(int val): val(val), left(NULL), right(NULL) {}
+};
+
+class Solution{
+public:
+	TreeNode* treeToList(TreeNode *root){
+		if(root == NULL) return root;
+		v.clear();
+		dfs(root);
+		for(int i = 0, len = v.size(); i++){
+			if(i == 0) v[i]->left = NULL;
+			else v[i]->left = v[i-1];
+			if(i == len-1) v[i]->right = v[i+1];
+			else v[i]->right = NULL;
+		}
+		return v[0];
+	}
+private:
+	vector<TreeNode*> v;
+	void dfs(TreeNode *root){
+		if(root == NULL) return;
+		dfs(root->left);
+		v.push_back(root);
+		dfs(root->right);
+	}
+}
+```
+
+* 自学前端遇到的最困难的是什么？
+
+* 实现两列布局，左侧固定宽度，右侧自适应
+
+
+
 ## 2017-03-22 百度
 
 * 自我介绍
