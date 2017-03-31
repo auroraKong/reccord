@@ -4,81 +4,84 @@
 
 * 你有后台经验为什么考虑做前端？说一下调查问卷。遇到什么难点和挑战？状态管理有涉及到吗？有接触过其他的前端的框架吗？你移动端项目偏少一些。说一下搜索引擎系统。说一下acm竞赛过程、解题思路。前端学习有什么渠道？前端学习计划？
 
-* 浏览器在渲染过程中的[repaint和reflow](http://harttle.com/2015/08/11/reflow-repaint.html)。通过js去获取元素的宽度会触发什么？reflow。为什么呢？如果是通过transform的translate那会触发什么呢？[渲染树构建之后是reflow->repaint->GPU图像处理](http://www.kejik.com/article/292980.html)
-```
-触发reflow必然会触发repaint
-什么情况下触发reflow：
-1. dom元素的添加、修改、删除
-2. 移动dom元素，动画
-3. resize窗口，滚动
-4. 读取元素某些属性(offsetxx, clientxx, getComputedStyle, top/left/width/height)
+* 浏览器在渲染过程中的[repaint和reflow](http://harttle.com/2015/08/11/reflow-repaint.html)。通过js去获取元素的宽度会触发什么？reflow。为什么呢？如果是通过transform的translate那会触发什么呢？
 
-CSS动画完全工作在GPU上，而js动画是需要计算每一帧的状态。
-```
+	[渲染树构建之后是reflow->repaint->GPU图像处理](http://www.kejik.com/article/292980.html)
+	
+	[GPU](https://isux.tencent.com/emancipate-gpu.html)
+	```
+	触发reflow必然会触发repaint
+	什么情况下触发reflow：
+	1. dom元素的添加、修改、删除
+	2. 移动dom元素，动画
+	3. resize窗口，滚动
+	4. 读取元素某些属性(offsetxx, clientxx, getComputedStyle, top/left/width/height)
+
+	CSS动画完全工作在GPU上，而js动画是需要计算每一帧的状态。GPU图像处理计算，使用硬件加速。FPS每秒帧数越高，画面越流畅。
+	```
 
 * CSS一种link进来，一种通过style直接写在head中，区别及优缺点
-```
-CSS引入方式：
-行内样式：<p style="..."></p>，缺点不利于SEO、不利于维护、html页面繁杂
-内嵌样式：<style></style>，缺点
-外部引用: <link> 表现与结构分离，维护方便，利于SEO，html与css文件同时加载网页打开速度快。
-导入：@import 等页面加载完才加载css，如果网页较大会先显示无样式的页面，再出现样式。而link是在页面加载时同时加载。
+	```
+	CSS引入方式：
+	行内样式：<p style="..."></p>，缺点不利于SEO、不利于维护、html页面繁杂
+	内嵌样式：<style></style>
+	外部引用: <link> 表现与结构分离，维护方便，利于SEO，html与css文件同时加载网页打开速度快。
+	导入：@import 等页面加载完才加载css，如果网页较大会先显示无样式的页面，再出现样式。而link是在页面加载时同时加载。
 
-理论上的优先级：行内>内嵌>外部引用>导入
-实际上：谁离相应的代码近，谁的优先级高。比如头部先style后link，那么link中的样式优先级就高于style中的。
-```
+	理论上的优先级：行内>内嵌>外部引用>导入
+	实际上：谁离相应的代码近，谁的优先级高。比如头部先style后link，那么link中的样式优先级就高于style中的。
+	```
 
-* js深拷贝、浅拷贝
+* js深拷贝、浅拷贝。slice、splice、递归遍历
 
 * 跨域怎么解决？JSONP有什么缺点？
-```
-只支持GET请求，不支持其他HTTP请求
-JSONP无法确认请求域是否安全
-无法确定JSONP请求是否失败
-```
+	```
+	只支持GET请求，不支持其他HTTP请求
+	JSONP无法确认请求域是否安全
+	无法确定JSONP请求是否失败
+	```
 
 * function abc(){}, abc.length
-```
-length：函数接收的参数的个数
-arguments：伪数组，包含传入函数的所有参数。
-	伪数组：1. 具有length属性
-			2. 按索引方式存储数据
-			3. 不具有数组的push、pop等方法
-rest参数：ES6引入，用于获取函数的多余参数，把参数转换为数组，测试了rest具有push等方法。
-	function fn(a, ...vals){
-		console.log(vals);
-	}
-	fn(1,2,3,4); // [2,3,4]
-...扩展运算符: 将一个数组转为用逗号分隔的参数序列，测试了只能用在函数参数中。
-	function add(x, y){
-		return x+y;
-	}
-	var nums = [1,2];
-	add(...nums); // 3
-```
+	```
+	length：函数接收的参数的个数
+	arguments：伪数组，包含传入函数的所有参数。
+		伪数组：1. 具有length属性
+				2. 按索引方式存储数据
+				3. 不具有数组的push、pop等方法
+	rest参数：ES6引入，用于获取函数的多余参数，把参数转换为数组，测试了rest具有push等方法。
+		function fn(a, ...vals){
+			console.log(vals);
+		}
+		fn(1,2,3,4); // [2,3,4]
+	...扩展运算符: 将一个数组转为用逗号分隔的参数序列，测试了只能用在函数参数中。
+		function add(x, y){
+			return x+y;
+		}
+		var nums = [1,2];
+		add(...nums); // 3
+	```
 
 * [$.ready 和window.onload的区别](http://blog.csdn.net/xiebaochun/article/details/36375481)
-```
-1.执行时间 
-window.onload必须等到页面内包括图片的所有元素加载完毕后才能执行。 
-$(document).ready()是DOM结构绘制完毕后就执行，不必等到加载完毕。 
+	```
+	1.执行时间 
+	window.onload必须等到页面内包括图片的所有元素加载完毕后才能执行。 
+	$(document).ready()是DOM结构绘制完毕后就执行，不必等到加载完毕。 
 
-2.编写个数不同 
-window.onload不能同时编写多个，如果有多个window.onload方法，只会执行一个 
-$(document).ready()可以同时编写多个，并且都可以得到执行 
+	2.编写个数不同 
+	window.onload不能同时编写多个，如果有多个window.onload方法，只会执行最后一个 
+	$(document).ready()可以同时编写多个，并且都可以得到执行 
 
-3.简化写法 
-window.onload没有简化写法 
-$(document).ready(function(){})可以简写成$(function(){});
-```
+	3.简化写法 
+	window.onload没有简化写法 
+	$(document).ready(function(){})可以简写成$(function(){});
+	```
 
 * cookie和本地存储，cookie和localStorage存取。a.meituan.com和b.meituan.com下是否可以获取cookie和localStorage
 ```
 读取同一份localStorage数据必须在相同的协议、主机、端口下。也就是localStorage不允许跨域。
 ```
 
-* 判断用户是不是在网的状态？ajax轮询
-
+* 判断用户是不是在网的状态？轮询、navigator.onLine
 * 若干根绳子，每根绳子都一定会从一端开始烧在一个小时之内烧完，粗细材质都不一定，问怎样能拿到一个小时15分钟。
 
 * 给你一个篮球和是直径2/3左右的尺子，问怎么得到篮球的半径。
@@ -87,30 +90,25 @@ $(document).ready(function(){})可以简写成$(function(){});
 
 * 实习时间
 
-* 你为什么做前端？通过什么样的渠道来学习？你以后把前端当作职业选择？你怎么看前端技术未来是绿野长青还是走到头？你怎么知道公司要做前后端开发。前端比重越来越大你怎么得出这样的结论？服务器端有什么优点？其他语言就没有高并发能力吗？那你觉得node有什么优点缺点，适合什么样的场景？阻塞和非阻塞什么区别？阻塞非阻塞与同步异步的关系？
+* 你为什么做前端？通过什么样的渠道来学习？你以后把前端当作职业选择？你怎么看前端技术未来是绿野长青还是走到头？你怎么知道公司要做前后端开发。前端比重越来越大你怎么得出这样的结论？服务器端有什么优点？其他语言就没有高并发能力吗？那你觉得node有什么优点缺点，适合什么样的场景？阻塞和非阻塞什么区别？[阻塞非阻塞与同步异步的关系](https://www.zhihu.com/question/19732473)？
 ```
-阻塞与非阻塞是程序在等待调用结果时的状态
-同步与异步关注的是消息通信机制
-https://www.zhihu.com/question/19732473
+阻塞与非阻塞是程序在等待调用结果时的状态，是对发起请求方而言，需要去check接收方是否有结果返回。
+同步与异步关注的是消息通信机制，是对请求接收方而言，接收方去决定多会儿返回结果。
 ```
 
 * 你做的项目中做的最好的是哪个？为什么觉得它做的好？因为它是一个完整的过程你就觉得好？好的标准你怎么定义？那你为什么选mongodb？mongodb适合于哪些场景？你用js你做前端页面，node做后台服务，javac++适合效率更高的场景，那你觉得mongodb优点缺点是什么？对js这种语言你觉得缺点是什么？我说单线程，然后问单线程的问题是怎么解决？我说有事件轮询。然后面试官说这不就相当于解决了嘛。然后我就说我了解过js是无法使用CPU多核的，然后问那怎么才能使用多核呢？
 ```
-可以加childProcess
-webworker
+单线程的问题是所有任务需要排队耗时，采用事件轮询执行还是在主线程。
+js使用多核：可以加childProcess创建子进程，webworker创建子线程。
 ```
-* 你对闭包怎么评价？我说一些特定的情况下需要使用闭包但是不能滥用，会有内存的问题。然后问为什么会有内存的问题？因为它把变量暴露在全局中延长了生命周期所以就会内存泄漏吗？
+
+* 你对闭包怎么评价？我说一些特定的情况下需要使用闭包但是不能滥用，会有内存的问题。然后问为什么会有内存的问题？因为它把变量暴露在全局中延长了生命周期所以就会[内存泄漏](http://jinlong.github.io/2016/05/01/4-Types-of-Memory-Leaks-in-JavaScript-and-How-to-Get-Rid-Of-Them/)吗？java的垃圾回收机制会不会出现内存泄漏？js不是因为暴露在外面就造成内存泄漏吧，那怎么解决这个问题呢？那要是忘记清除它的引用呢？有没有具体的方法实现内存及时释放的机制？
 ```
 内存泄漏的就是程序不再需要占用内存的时候，内存没被垃圾回收机制回收。
-http://jinlong.github.io/2016/05/01/4-Types-of-Memory-Leaks-in-JavaScript-and-How-to-Get-Rid-Of-Them/
 设置引用为null，GC就会自己清除，不需要自己管。
 ```
-* java的垃圾回收机制会不会出现内存泄漏？js不是因为暴露在外面就造成内存泄漏吧，那怎么解决这个问题呢？那要是忘记清除它的引用呢？有没有具体的方法实现内存及时释放的机制？
 
-* 我看你做过网页爬虫。有这样一个场景，浏览网页会经常弹出小窗，会是插播广告或者联通移动的流量小球，怎么去检测？呈现出来之后通过页面的结构能不能判断？我说检测iframe，还可以升级为https。
-```
-http://quotation.github.io/web/2015/04/15/china-telecom-isp-hijack.html
-```
+* 我看你做过网页爬虫。有这样一个场景，浏览网页会经常弹出小窗，会是[插播广告](http://quotation.github.io/web/2015/04/15/china-telecom-isp-hijack.html)或者联通移动的流量小球，怎么去检测？呈现出来之后通过页面的结构能不能判断？我说检测iframe，还可以升级为https。
 
 * 平时上网前端会有DNS解析，你知道解析过程，怎么解析的吗？它为什么要设计成这样子？后端原来是ip为a的服务器，现在换到b了，你拿到了错误的域名解析ip地址会怎么样？应该怎么办？
 ```
@@ -118,7 +116,7 @@ http://quotation.github.io/web/2015/04/15/china-telecom-isp-hijack.html
 出现域名解析错误，可以清除本地DNS缓存
 ```
 
-* 你了解CDN吗？目的是什么？为什么能方便分发？怎么提高用户访问速度？服务器多了就能提高吗？
+* 你了解[CDN](https://www.incapsula.com/cdn-guide/what-is-cdn-how-it-works.html)吗？目的是什么？为什么能方便分发？怎么提高用户访问速度？服务器多了就能提高吗？
 ```
 CDN把静态内容分发到距离用户近的缓存服务器，然后DNS托管。
 DNS托管：把DNS解析的地址改成CDN提供的
