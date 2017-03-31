@@ -1,8 +1,98 @@
+## 2017-03-29 美团二面
+
+* 自我介绍
+
+* 你有后台经验为什么考虑做前端？说一下调查问卷。遇到什么难点和挑战？状态管理有涉及到吗？有接触过其他的前端的框架吗？你移动端项目偏少一些。说一下搜索引擎系统。说一下acm竞赛过程、解题思路。前端学习有什么渠道？前端学习计划？
+
+* 浏览器在渲染过程中的[repaint和reflow](http://harttle.com/2015/08/11/reflow-repaint.html)。通过js去获取元素的宽度会触发什么？reflow。为什么呢？如果是通过transform的translate那会触发什么呢？[渲染树构建之后是reflow->repaint->GPU图像处理](http://www.kejik.com/article/292980.html)
+```
+触发reflow必然会触发repaint
+什么情况下触发reflow：
+1. dom元素的添加、修改、删除
+2. 移动dom元素，动画
+3. resize窗口，滚动
+4. 读取元素某些属性(offsetxx, clientxx, getComputedStyle, top/left/width/height)
+
+CSS动画完全工作在GPU上，而js动画是需要计算每一帧的状态。
+```
+
+* CSS一种link进来，一种通过style直接写在head中，区别及优缺点
+```
+CSS引入方式：
+行内样式：<p style="..."></p>，缺点不利于SEO、不利于维护、html页面繁杂
+内嵌样式：<style></style>，缺点
+外部引用: <link> 表现与结构分离，维护方便，利于SEO，html与css文件同时加载网页打开速度快。
+导入：@import 等页面加载完才加载css，如果网页较大会先显示无样式的页面，再出现样式。而link是在页面加载时同时加载。
+
+理论上的优先级：行内>内嵌>外部引用>导入
+实际上：谁离相应的代码近，谁的优先级高。比如头部先style后link，那么link中的样式优先级就高于style中的。
+```
+
+* js深拷贝、浅拷贝
+
+* 跨域怎么解决？JSONP有什么缺点？
+```
+只支持GET请求，不支持其他HTTP请求
+JSONP无法确认请求域是否安全
+无法确定JSONP请求是否失败
+```
+
+* function abc(){}, abc.length
+```
+length：函数接收的参数的个数
+arguments：伪数组，包含传入函数的所有参数。
+	伪数组：1. 具有length属性
+			2. 按索引方式存储数据
+			3. 不具有数组的push、pop等方法
+rest参数：ES6引入，用于获取函数的多余参数，把参数转换为数组，测试了rest具有push等方法。
+	function fn(a, ...vals){
+		console.log(vals);
+	}
+	fn(1,2,3,4); // [2,3,4]
+...扩展运算符: 将一个数组转为用逗号分隔的参数序列，测试了只能用在函数参数中。
+	function add(x, y){
+		return x+y;
+	}
+	var nums = [1,2];
+	add(...nums); // 3
+```
+
+* [$.ready 和window.onload的区别](http://blog.csdn.net/xiebaochun/article/details/36375481)
+```
+1.执行时间 
+window.onload必须等到页面内包括图片的所有元素加载完毕后才能执行。 
+$(document).ready()是DOM结构绘制完毕后就执行，不必等到加载完毕。 
+
+2.编写个数不同 
+window.onload不能同时编写多个，如果有多个window.onload方法，只会执行一个 
+$(document).ready()可以同时编写多个，并且都可以得到执行 
+
+3.简化写法 
+window.onload没有简化写法 
+$(document).ready(function(){})可以简写成$(function(){});
+```
+
+* cookie和本地存储，cookie和localStorage存取。a.meituan.com和b.meituan.com下是否可以获取cookie和localStorage
+```
+读取同一份localStorage数据必须在相同的协议、主机、端口下。也就是localStorage不允许跨域。
+```
+
+* 判断用户是不是在网的状态？ajax轮询
+
+* 若干根绳子，每根绳子都一定会从一端开始烧在一个小时之内烧完，粗细材质都不一定，问怎样能拿到一个小时15分钟。
+
+* 给你一个篮球和是直径2/3左右的尺子，问怎么得到篮球的半径。
+
 ## 2017-03-28 腾讯二面
 
 * 实习时间
 
 * 你为什么做前端？通过什么样的渠道来学习？你以后把前端当作职业选择？你怎么看前端技术未来是绿野长青还是走到头？你怎么知道公司要做前后端开发。前端比重越来越大你怎么得出这样的结论？服务器端有什么优点？其他语言就没有高并发能力吗？那你觉得node有什么优点缺点，适合什么样的场景？阻塞和非阻塞什么区别？阻塞非阻塞与同步异步的关系？
+```
+阻塞与非阻塞是程序在等待调用结果时的状态
+同步与异步关注的是消息通信机制
+https://www.zhihu.com/question/19732473
+```
 
 * 你做的项目中做的最好的是哪个？为什么觉得它做的好？因为它是一个完整的过程你就觉得好？好的标准你怎么定义？那你为什么选mongodb？mongodb适合于哪些场景？你用js你做前端页面，node做后台服务，javac++适合效率更高的场景，那你觉得mongodb优点缺点是什么？对js这种语言你觉得缺点是什么？我说单线程，然后问单线程的问题是怎么解决？我说有事件轮询。然后面试官说这不就相当于解决了嘛。然后我就说我了解过js是无法使用CPU多核的，然后问那怎么才能使用多核呢？
 ```
@@ -434,6 +524,18 @@ rem：相对html、body的字体尺寸，不继承父级
 * JavaScript学的怎么样？ES6有看过吗？你觉得ES6什么比较好用？
 
 * 箭头函数和普通函数的区别。
+```
+1. 函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。箭头函数的this是不可变的，不可以修改执行上下文，看测试。
+	var id = 1;
+	var f = () => console.log(this.id);
+	f(); // 1
+	f.call({id: 4}); // 1
+2. 不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+
+3. 不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。
+
+4. 不可以使用yield命令，因此箭头函数不能用作Generator函数。
+```
 
 * promise多异步流程怎么实现
 
