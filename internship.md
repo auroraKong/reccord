@@ -1,3 +1,93 @@
+## 2017-04-07 腾讯四面
+
+* 你现在还有在做ACM吗？
+
+* 浏览器访问后台的整个过程。DNS协议查询过程。DNS协议底层是用什么协议啊？UDP。查询劫持。整个url渲染过程最了解哪个？描述http协议，post数据大小。服务器怎么处理http请求，webserver了解过吗？渲染的过程中如果返回的资源有先后顺序，怎么优化，提高渲染效率？我说css的@import的link，那JS文件怎么解决？我说require和module.exports。
+
+* 字符串匹配都用哪些算法。kmp算法复杂度多少。AC自动机实现原理。trie树每个节点都需要开一个数组吗？
+
+* 单链表判断是否有环。
+
+* 给一个数组寻找第一个不在数组中的最小正整数。给出O(nlogn)的，要更快的
+
+* 一个矩阵，从左上走到右下，只能向右向下，求最大路径和。给出最优空间时间复杂度。如果要求走过的路径中不允许权值小于0，需要做什么特殊处理？
+
+* 欧几里得算法复杂度
+
+* 你一直在做算法，为什么要做前端？
+
+## 2017-04-07 腾讯三面
+
+* 自我介绍
+
+* session和cookie的区别
+
+* get和post的区别，post表单有什么格式？[post提交数据格式](https://imququ.com/post/four-ways-to-post-data-in-http.html)，[发送表单数据](https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data)
+```
+HTTP的请求报文包括三部分：起始行(method url version)、首部(header)、主体(body)。
+POST提交的数据必须放在HTTP的body中，服务器端根据http header中的content-type字段来判断数据是用哪种编码方式编码的，然后进行解码。
+
+先看form表单的enctype属性：
+1. 默认编码方式发送前编码所有字符：application/x-www-form-urlencoded
+2. 不对字符编码，在使用包含文件上传的表单时必须使用该值：multipart/form-data
+3. 空格转换为+加号，不对特殊字符编码：text/plain
+```
+
+* amd和cmd
+```
+amd:依赖前置，提前执行
+cmd：依赖就近，延迟执行
+```
+
+* 介绍盒子模型
+
+* 冒泡分几个阶段，我觉得是面试官说错了。怎么禁止冒泡
+
+* 网页要加载很多资源，不同浏览器对用一个域下的并发数是多少？
+
+* 有做过单页的应用吗？介绍一下MVC、MVVM
+
+* 用过jsonp吗？是get还是post请求？跨域有哪些方法？
+
+* 以前有实习过吗？
+
+## 2017-04-07 百度二面
+
+* 说一下做过的项目遇到哪些难点
+
+* 你怎么理解单页应用，你自己实现你从哪几方面考虑。路由切换怎么实现？我说用history API，问HTML5有兼容问题，又怎么解决？
+```
+hash(#)：不会被爬虫当作不同内容来抓取
+hash bang(#!):用作Ajax URL的分段标识符，用于浏览器的状态保存，会为爬虫索引方便SEO。
+```
+
+* 你怎么理解MVX的框架？我说了MVC和MVVM的区别。
+```
+MVC的所有通信都是单向的
+MVVM是数据双向绑定
+```
+
+* 实现文字超长出省略号。text-overflow:ellipsis。
+
+* CSS选择器优先级，两个类相同属性作用于同一个元素优先级。就近原则
+
+* get和post区别，post其实也不安全，怎么安全些？我说编码。
+
+* http状态码301,302,304，301和302的区别
+```
+302搜索引擎会抓取新的内容同时保留旧的网址。
+301搜索引擎在抓取新的内容的同时也将旧网址替换为重定向之后的网址。
+```
+
+* 浏览器缓存机制。[http强缓存协商缓存](http://www.cnblogs.com/wonyun/p/5524617.html)
+
+* 本地存储，说一下localStorage、sessionStorage、cookie有效期。两个网站www.baidu.com和baike.baidu.com如何使cookie、localstorage实现通信。
+
+* 怎么理解web安全？我说了xss和csrf以及防御
+
+* 你有什么问题
+
+
 ## 2017-04-01 微软亚研Offer
 
 ## 2017-04-01 微软二面
